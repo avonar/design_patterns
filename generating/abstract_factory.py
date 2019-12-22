@@ -11,12 +11,17 @@
 """
 
 
-class AbstractFactory(object):
-    def create_drink(self):
-        raise NotImplementedError()
+from abc import abstractmethod
 
+
+class AbstractFactory(object):
+    @abstractmethod
+    def create_drink(self):
+        pass
+
+    @abstractmethod
     def create_food(self):
-        raise NotImplementedError()
+        pass
 
 
 class Drink(object):
@@ -56,6 +61,7 @@ def get_factory(ident):
         return ConcreteFactory1()
     elif ident == 1:
         return ConcreteFactory2()
+
 
 factory = get_factory(1)
 print factory.create_drink()  # Pepsi
